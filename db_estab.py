@@ -1,5 +1,5 @@
 import mysql.connector
-from db_config import db_config
+from db_Config import db_config
 
 def create_table_Materials():
     try:
@@ -20,7 +20,7 @@ def create_table_Materials():
                     rmm varchar(255) comment '相对分子质量(relative molecular mass)' DEFAULT '',
                     ofr varchar(255) comment '氧燃比(Oxygen-fuel ratio)' DEFAULT '',
                     ob varchar(255) comment '氧平衡' DEFAULT '',
-                    density double comment '密度' DEFAULT '',
+                    density double comment '密度',
                     granu varchar(255) comment '粒度(granularity)' DEFAULT '',
                     sen_p varchar(255) comment '感度性能(Sensitivity performance)' DEFAULT ''
                 ) comment '原料';
@@ -116,7 +116,7 @@ def create_table_Efed():
            create_table_query = '''
             CREATE TABLE efed (
                 id int auto_increment not null primary key comment 'ID',
-                in_id int unique comment '相对应的配方id',
+                in_id bigint unique comment '相对应的配方id',
                 count int comment '数目' DEFAULT 0,
                 pre varchar(1000) comment '压强' DEFAULT '',
                 rate varchar(1000) comment '速率' DEFAULT '',
@@ -132,7 +132,7 @@ def create_table_Efed():
        connection.close()
        
     except mysql.connector.Error as error:
-       print(f"执行函数时出现错误: {error}")
+       print(f"efed实验燃速数据表创建失败: {error}")
 
 
 def create_table_Bre():       
@@ -177,7 +177,7 @@ def create_table_User():
        connection = mysql.connector.connect(**db_config)
        cursor = connection.cursor()
 
-       check_table_query = "show tables like 'stu'"
+       check_table_query = "show tables like 'user'"
        cursor.execute(check_table_query)
 
        if cursor.fetchone():
