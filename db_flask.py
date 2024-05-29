@@ -61,17 +61,19 @@ def edit_user():
         return make_response(jsonify({"current_user":current_user, "Error":"Edit fail: "+str(e)}), 400)
 
 
-@app.route('/users/login', methods=['POST'])
-def login_user():
-    json_data = request.get_json()
-    code, permission = db_func.user_login(json_data, db_config)
-    if code == 200:
-        access_token = create_access_token(identity=json_data["username"])
-        return make_response(jsonify({"access_token": access_token,"Permission": permission, "Message": "Login success"}), 200)
-    if code == 400:
-        return make_response(jsonify({"error": "Wrong username or password"}), 400)
-    if code == 420:
-        return make_response(jsonify({"error": "Unknown username or password"}), 400)
+@app.route('/users/getall', methods=['GET'])
+@jwt_required()
+def get_all_users():
+    result = {}
+    try:
+        current_user = get_jwt_identity()
+        result["data"] = db_func.user_getall(db_config)
+        result["current_user"] = current_user
+        return make_response(result, 200)
+    except Exception as e:
+        return make_response(jsonify({"current_user":current_user, "Error":"The user identity verification failed: "+str(e)}), 400)
+
+
 
 # Materials表操作
 @app.route("/matadd", methods=["POST"])
