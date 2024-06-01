@@ -26,7 +26,7 @@
 <!--top-Header-menu-->
 <div id="user-nav" class="navbar navbar-inverse">
   <ul class="nav">
-    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">欢迎Admin</span><b class="caret"></b></a>
+    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">欢迎</span><b class="caret"></b></a>
       <ul class="dropdown-menu">
         <li class="divider"></li>
         <li><a href="login.html"><i class="icon-key"></i> 退出</a></li>
@@ -39,7 +39,7 @@
 
 <div id="sidebar"> <a href="#" class="visible-phone"><i class="icon icon-list"></i>Forms</a>
  <ul>
-    <li class="submenu active"> <a href="#"><i class="icon icon-th-list"></i> <span>表单</span> </a>
+    <li class="submenu active"> <a href="#"><i class="icon icon-th-list"></i> <span>管理员菜单</span> </a>
     </li>
   </ul>
 </div>
@@ -64,35 +64,101 @@
             <div class="control-group">
               <label class="control-label">姓名：</label>
               <div class="controls">
-                <input id="username" type="text" class="span11" placeholder="请输入姓名" />
+                <input id="username-create" type="text" class="span11" placeholder="请输入姓名" />
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">密码：</label>
               <div class="controls">
-                <input id="password" type="password"  class="span11" placeholder="请输入密码"  />
+                <input id="password-create" type="password"  class="span11" placeholder="请输入密码"  />
               </div>
             </div>
             <div class="control-group">
                 <label class="control-label">是否管理员：</label>
                 <div class="controls">
-                    <input id="is-admin-checkbox" type="checkbox" /> 是
+                    <input id="is-admin-checkbox-create" type="checkbox" /> 是
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label">可编辑：</label>
                 <div class="controls">
-                    <input id="can-edit-checkbox" type="checkbox" /> 是
+                    <input id="can-edit-checkbox-create" type="checkbox" /> 是
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label">是否激活：</label>
                 <div class="controls">
-                    <input id="is-active-checkbox" type="checkbox" /> 是
+                    <input id="is-active-checkbox-create" type="checkbox" /> 是
                 </div>
             </div>
             <div class="form-actions">
-              <button type="submit" class="btn btn-success" id="create-user-btn">Save</button>
+              <button type="submit" class="btn btn-success" id="create-user-btn">添加</button>
+            </div>
+          </form>
+        </div>
+      </div>
+        <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>删除用户信息</h5>
+        </div>
+        <div class="widget-content nopadding">
+          <form action="#" method="get" class="form-horizontal">
+            <div class="control-group">
+              <label class="control-label">姓名：</label>
+              <div class="controls">
+                <input id="deleteusername" type="text" class="span11" placeholder="请输入姓名" />
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-success" id="delete-user-btn">删除</button>
+            </div>
+          </form>
+        </div>
+      </div>
+        <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>修改用户信息</h5>
+        </div>
+        <div class="widget-content nopadding">
+          <form action="#" method="get" class="form-horizontal">
+              <div class="control-group">
+              <label class="control-label">ID：</label>
+              <div class="controls">
+                <input id="id-edit" type="text" class="span11" placeholder="请输入id" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">姓名：</label>
+              <div class="controls">
+                <input id="username-edit" type="text" class="span11" placeholder="请输入姓名" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">密码：</label>
+              <div class="controls">
+                <input id="password-edit" type="password"  class="span11" placeholder="请输入密码"  />
+              </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">是否管理员：</label>
+                <div class="controls">
+                    <input id="is-admin-checkbox-edit" type="checkbox" /> 是
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">可编辑：</label>
+                <div class="controls">
+                    <input id="can-edit-checkbox-edit" type="checkbox" /> 是
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">是否激活：</label>
+                <div class="controls">
+                    <input id="is-active-checkbox-edit" type="checkbox" /> 是
+                </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-success" id="edit-user-btn">修改</button>
             </div>
           </form>
         </div>
@@ -162,21 +228,15 @@
      $("#create-user-btn").click(function(event) {
         event.preventDefault(); // 阻止表单的默认提交行为
 
-        var username = $("#username").val();
-        var password = $("#password").val();
-        var isAdmin = $("#is-admin-checkbox").is(":checked") ? "change_password" : "";
-        var canEdit = $("#can-edit-checkbox").is(":checked") ? "change_data" : "";
-        var isActive = $("#is-active-checkbox").is(":checked") ? "predict" : "";
+        var username = $("#username-create").val();
+        var password = $("#password-create").val();
+        var isAdmin = $("#is-admin-checkbox-create").is(":checked") ? "change_password" : "";
+        var canEdit = $("#can-edit-checkbox-create").is(":checked") ? "change_data" : "";
+        var isActive = $("#is-active-checkbox-create").is(":checked") ? "predict" : "";
 
         var permissions = [isAdmin, canEdit, isActive].filter(function(permission) {
           return permission !== ""; // 过滤掉空字符串
         });
-        // 构造包含所有用户信息的数据对象
-        /*var userData = {
-            "username": username,
-            "password": password,
-            "permissions":permissions,
-        };*/
 
         // 发送 Ajax 请求到 Flask 后端
         $.ajax({
@@ -192,7 +252,82 @@
                 if (xhr.status == 200) {
                     // 创建成功后的处理逻辑
                     console.log(response.Message);
-                    // 刷新用户列表或者执行其他操作
+                    // 刷新
+                    location.reload();
+                } else {
+                    // 创建失败时的处理逻辑
+                    console.error(response.error);
+                    // 显示错误消息或者执行其他操作
+                }
+            },
+            error: function(xhr, status, error) {
+                // 处理创建失败的逻辑
+                console.error(xhr.responseText);
+                // 显示错误消息或者执行其他操作
+            }
+        });
+    });
+
+    $("#delete-user-btn").click(function(event) {
+        event.preventDefault(); // 阻止表单的默认提交行为
+
+        var username = $("#deleteusername").val();
+
+        $.ajax({
+            url: "http://127.0.0.1:9010/users/delete",
+            type: "POST",
+            contentType: "application/json",
+            headers: {
+                'Authorization': `Bearer ${jwtToken}`
+            },
+            data: JSON.stringify({username: username}),
+            success: function(response, textStatus, xhr) {
+                // 检查返回的状态码是否是 200
+                if (xhr.status == 200) {
+                    // 创建成功后的处理逻辑
+                    console.log(response.Message);
+                    // 刷新
+                    location.reload();
+                } else {
+                    // 创建失败时的处理逻辑
+                    console.error(response.error);
+                    // 显示错误消息或者执行其他操作
+                }
+            },
+            error: function(xhr, status, error) {
+                // 处理创建失败的逻辑
+                console.error(xhr.responseText);
+                // 显示错误消息或者执行其他操作
+            }
+        });
+    });
+    $("#edit-user-btn").click(function(event) {
+        event.preventDefault(); // 阻止表单的默认提交行为
+
+        var ID = $("#id-edit").val();
+        var username = $("#username-edit").val();
+        var password = $("#password-edit").val();
+        var isAdmin = $("#is-admin-checkbox-edit").is(":checked") ? 1 : 0;
+        var canEdit = $("#can-edit-checkbox-edit").is(":checked") ? 1 : 0;
+        var isActive = $("#is-active-checkbox-edit").is(":checked") ? 1 : 0;
+
+
+        // 发送 Ajax 请求到 Flask 后端
+        $.ajax({
+            url: "http://127.0.0.1:9010/users/edit",
+            type: "POST",
+            contentType: "application/json",
+            headers: {
+                'Authorization': `Bearer ${jwtToken}`
+            },
+            data: JSON.stringify({ID: ID,username: username, password: password, change_password: isAdmin, change_data: canEdit, predict: isActive}),
+            success: function(response, textStatus, xhr) {
+                // 检查返回的状态码是否是 200
+                if (xhr.status == 200) {
+                    // 创建成功后的处理逻辑
+                    console.log(response.Message);
+                    // 刷新
+                    location.reload();
                 } else {
                     // 创建失败时的处理逻辑
                     console.error(response.error);

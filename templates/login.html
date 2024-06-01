@@ -84,13 +84,13 @@
                     localStorage.clear();
                     localStorage.setItem('jwtToken', response.access_token);
                     if(response.Priviliges.includes('change_password') == 1) {
-                        window.location.href = "form-common.html";
+                        window.location.href = "admin.html";
                     }
                     else if(response.Priviliges.includes('change_data') == 1){
 
                     }
                     else if(response.Priviliges.includes('predict') == 1){
-                        window.location.href = "index.html";
+                        window.location.href = "student_1.html.html";
                     }
                     // 重定向到登录成功后的页面
                 } else {
