@@ -9,5 +9,5 @@ db_config = {
     'user': 'root',
     'password': 'wlnsszc113251799',
     'host': 'localhost',
-    'database': 'db_class'
+    'database': 'class_design'
 }
