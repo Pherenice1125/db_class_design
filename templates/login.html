@@ -81,6 +81,7 @@
                 if (xhr.status == 200) {
                     // 登录成功后的处理逻辑
                     console.log(response.Message);
+                    
                     localStorage.clear();
                     localStorage.setItem('jwtToken', response.access_token);
                     if(response.Priviliges.includes('change_password') == 1) {
@@ -90,7 +91,7 @@
 
                     }
                     else if(response.Priviliges.includes('predict') == 1){
-                        window.location.href = "student_1.html.html";
+                        window.location.href = "students_1.html";
                     }
                     // 重定向到登录成功后的页面
                 } else {
