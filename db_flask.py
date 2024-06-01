@@ -126,12 +126,12 @@ def mat_update():
     
     
 #Ingredients配方表操作
-@app.route("/ingre/add", methods=["POST"])
-def ingre_add():
+@app.route("/ingre/addOrUpdate", methods=["POST"])
+def ingre_add_o_update():
     json_data = request.get_json()
     if json_data:
         try:
-            db_func.add_ingre(json_data, db_config)
+            db_func.add_or_update_ingre(json_data, db_config)
             return make_response(jsonify({'message': 'Data added into `ingre` successfully'}), 200)
         except Exception as e:
             return make_response(jsonify({'error': 'Data inserted failed：' + str(e)}), 500)
@@ -148,23 +148,22 @@ def ingre_del():
     except Exception as e:
         return make_response(jsonify({'error': 'Data deleted from `ingre` unsuccsessfully:' + str(e)}), 500)
 
-@app.route("/ingre/get", methods=["GET"])
-def ingre_get():
+@app.route("/ingre/getone", methods=["POST"])
+def ingre_getone():
+    try:
+        json_data = request.get_json()
+        rows = db_func.get_ingre_one(json_data, db_config)        
+        return make_response(jsonify({'message': 'Data get from `ingre` successfully', 'value': rows}), 200)
+    except Exception as e:
+        return make_response(jsonify({'error': 'Data get from `ingre` unsuccessfully:' + str(e)}), 500)
+
+@app.route("/ingre/getall", methods=["GET"])
+def ingre_getall():
     try:
         rows = db_func.get_ingre_all(db_config)        
         return make_response(jsonify({'message': 'Data get from `ingre` successfully', 'value': rows}), 200)
     except Exception as e:
         return make_response(jsonify({'error': 'Data get from `ingre` unsuccessfully:' + str(e)}), 500)
-
-@app.route("/ingre/update", methods=["POST"])
-def ingre_update():
-    try:
-        json_data = request.get_json()
-        db_func.update_ingre(json_data, db_config)    
-        return make_response(jsonify({'message': 'Data update in `ingre` successfully'}), 200)
-    except Exception as d:
-        return make_response(jsonify({'error': 'Data update in `ingre` unsuccessfully:' + str(d)}), 500)
-
 
 
 #I_M_Midium中间表操作
@@ -202,7 +201,7 @@ def efed_del():
     except Exception as e:
         return make_response(jsonify({'error': 'Data unsuccessfully deleted from `efed`:' + str(e)}), 500)
     
-@app.route("/efed_get", methods=['POST'])
+@app.route("/efed/getone", methods=['POST'])
 def efed_get():
     try:
         json_data = request.get_json()
@@ -212,7 +211,7 @@ def efed_get():
         return make_response(jsonify({'error': 'Data unsuccessfully get from `efed`:' + str(e)}), 500)
 
     
-@app.route("/efedget_all", methods=['GET'])
+@app.route("/efed/get_all", methods=['GET'])
 def efed_get_all():
     try:
         rows = db_func.getall_efed_data_as_json(db_config)
@@ -222,20 +221,20 @@ def efed_get_all():
 
 
 #bre燃素方程表操作
-@app.route("/bre_addAndUpdate", methods=['POST'])
+@app.route("/bre/addAndUpdate", methods=['POST'])
 def bre_add_and_update():
     json_data = request.get_json()
     
     if json_data:
         try:
-            db_func.add_bre(json_data, db_config)
+            db_func.add_or_update_bre(json_data, db_config)
             return make_response(jsonify({'message': 'Data successfully inserted into `bre`'}), 200)
         except Exception as e:
             return make_response(jsonify({'error': 'Data unsuccessfully inserted into `bre`:' + str(e)}), 500)
     else:
         return make_response(jsonify({'error': 'Invalid json data(bre_add).'}), 400)
     
-@app.route("/bre_del", methods=['POST'])
+@app.route("/bre/del", methods=['POST'])
 def bre_del():
     json_data = request.get_json()
     try:
@@ -244,7 +243,7 @@ def bre_del():
     except Exception as e:
         return make_response(jsonify({'error': 'Data unsuccessfully inserted into `bre`:' + str(e)}), 500)
     
-@app.route("/bre_get", methods=['POST'])
+@app.route("/bre/getone", methods=['POST'])
 def bre_get():
     try:
         json_data = request.get_json()
@@ -254,7 +253,7 @@ def bre_get():
         return make_response(jsonify({'error': 'Data unsuccessfully inserted into `bre`:' + str(e)}), 500)
 
 
-@app.route("/breget_all", methods=['GET'])
+@app.route("/bre/getall", methods=['GET'])
 def bre_get_all():
     try:
         rows = db_func.getall_bre_data_as_json(db_config)
