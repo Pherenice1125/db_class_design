@@ -135,7 +135,7 @@ def user_getall(db_config):
 
 
 # Materials原料表操作
-def mat_add(json_data, db_config):
+def add_mat(json_data, db_config):
         connection = mysql.connector.connect(**db_config)
         cursor = connection.cursor()
 
@@ -297,7 +297,7 @@ def add_or_update_ingre(json_data, db_config):
     id_values_list = [int(i["id"]) for i in data["data"]]
     cont_values_list = [i["cont"] for i in data["data"]]
 
-    if ingre_id_value: 
+    if ingre_id_value:  # 如果存在ingre_id，则更新现有记录
         update_ingre_query = f"""
         UPDATE ingre SET ch_fo = '{ch_fo_value}', formula = '{formula_value}', mol_we = '{mol_we_value}' 
         WHERE ingre_id = {ingre_id_value}
@@ -305,15 +305,17 @@ def add_or_update_ingre(json_data, db_config):
         cursor.execute(update_ingre_query)
         connection.commit()
         
+        # 删除现有的关联记录
         delete_in_ma_query = f"DELETE FROM in_ma WHERE in_id = {ingre_id_value}"
         cursor.execute(delete_in_ma_query)
         connection.commit()
         
+        # 插入新的关联记录
         for mat_id, cont in zip(id_values_list, cont_values_list):
             insert_into_in_ma_query = f"INSERT INTO in_ma (in_id, ma_id, cont) VALUES ({ingre_id_value}, {mat_id}, '{cont}')"
             cursor.execute(insert_into_in_ma_query)
             connection.commit()
-    else:  
+    else:  # 如果不存在ingre_id，则插入新的记录
         insert_into_ingre_query = f"INSERT INTO ingre (ch_fo, formula, mol_we) VALUES ('{ch_fo_value}', '{formula_value}', '{mol_we_value}')"
         cursor.execute(insert_into_ingre_query)
         connection.commit()
@@ -361,58 +363,36 @@ def update_ingre(json_data, db_config):
     connection.close()
     return
 
-def get_ingre_one(json_data, db_config):
+def get_ingre_all(json_data, db_config):
     connection = mysql.connector.connect(**db_config)
     cursor = connection.cursor(dictionary=True)
-    data = json_data
-    ingre_id = data['Ingre_ID']
-    
-    query = f"select * from in_ma where in_id={ingre_id}"
-    # print(query)
-    cursor.execute(query)
-    rows_in_ma = cursor.fetchall()
-    
-    outList = []
-    for rDict in rows_in_ma:
-        ma_id = rDict['ma_id']
-        subQuery = f"select * from mat where id={ma_id}"
-        cursor.execute(subQuery)
-        ma_info = cursor.fetchone()
-        mat_name = ma_info['ccn']
-        outList.append({'id':ma_id,'mat_name':mat_name,'cont':rDict['cont']})
 
-    cursor.close()
-    connection.close()
-    
-    out_dict = {'data':outList}
+    try:
+        data = json_data
+        ingre_id = data['Ingre_ID']
+        
+        query = f"select * from in_ma where in_id={ingre_id}"
+        # print(query)
+        cursor.execute(query)
+        rows_in_ma = cursor.fetchall()
+        
+        outList = []
+        for rDict in rows_in_ma:
+            ma_id = rDict['ma_id']
+            subQuery = f"select * from mat where id={ma_id}"
+            cursor.execute(subQuery)
+            ma_info = cursor.fetchone()
+            mat_name = ma_info['ccn']
+            outList.append({'id':ma_id,'mat_name':mat_name,'cont':rDict['cont']})
 
-    return out_dict
+        cursor.close()
+        connection.close()
+        
+        out_dict = {'data':outList}
 
-    
-def get_ingre_all(db_config):
-    connection = mysql.connector.connect(**db_config)
-    cursor = connection.cursor(dictionary=True)
-    
-    # 查询所有ingredients的id
-    query = "SELECT * FROM in_ma"
-    cursor.execute(query)
-    rows_in_ma = cursor.fetchall()
-    
-    outList = []
-    for rDict in rows_in_ma:
-        ma_id = rDict['ma_id']
-        subQuery = f"SELECT * FROM mat WHERE id={ma_id}"
-        cursor.execute(subQuery)
-        ma_info = cursor.fetchone()
-        mat_name = ma_info['ccn']
-        outList.append({'id': ma_id, 'mat_name': mat_name, 'cont': rDict['cont']})
-
-    cursor.close()
-    connection.close()
-    
-    out_dict = {'data': outList}
-
-    return out_dict
+        return out_dict
+    except Exception as e:
+        return f"Error occurred: {str(e)}"
 
 
 #efed实验燃素数据表
