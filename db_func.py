@@ -196,20 +196,16 @@ def update_mat(json_data, db_config):
     return
 
 def del_mat(json_data, db_config):
+    data = json_data
+    id = data["Mat_ID"]
     connection = mysql.connector.connect(**db_config)
     cursor = connection.cursor()
-    data = json_data
-    
-    id = data["id"]
-    for key, value in data.items():
-        if key == 'id':
-            continue
-        
-        query = f"UPDATE mat SET `{key}` = '{value}' WHERE id = {id}"
-        # print(query)
-        cursor.execute(query)
-        connection.commit()    
-    
+
+    query = "delete from mat where id = %s"
+    value = (id,)
+    cursor.execute(query, value)
+
+    connection.commit()
     cursor.close()
     connection.close()
     return
