@@ -322,7 +322,7 @@ def add_or_update_ingre(json_data, db_config):
 
     cursor.close()
     connection.close()
-    return 0
+    return
 
 def del_ingre(json_data, db_config):
     data = json_data
@@ -337,7 +337,7 @@ def del_ingre(json_data, db_config):
     connection.commit()
     cursor.close()
     connection.close()
-    return 0
+    return
      
 def update_ingre(json_data, db_config):
     connection = mysql.connector.connect(**db_config)
