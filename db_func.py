@@ -231,20 +231,17 @@ def get_mat_one(json_data, db_config):
     return rows
     
 def get_mat_all(db_config):
-    try:
-        connection = mysql.connector.connect(**db_config)
-        cursor = connection.cursor()
+    connection = mysql.connector.connect(**db_config)
+    cursor = connection.cursor()
 
-        query = "select * from mat"
-        cursor.execute(query)
-        rows = cursor.fetchall()
+    query = "select * from mat"
+    cursor.execute(query)
+    rows = cursor.fetchall()
 
-        cursor.close()
-        connection.close()
+    cursor.close()
+    connection.close()
 
-        return rows
-    except Exception as e:
-        return f"Error occurred: {str(e)}"
+    return rows
     
     
 #I_M_Midium中间表操作
@@ -255,22 +252,20 @@ def getall_mat_for_ingre(json_data, db_config):
     data = json_data
     ingre_id = data['Ingre_ID']
 
-    query = f"SELECT i.*, GROUP_CONCAT(im.ma_id) AS ma_ids, GROUP_CONCAT(im.cont) AS cont_values FROM ingre i LEFT OUTER JOIN in_ma im ON i.id = im.in_id WHERE i.id = {ingre_id} GROUP BY i.id"
-    
+    query = f"select * from in_ma where in_id={ingre_id}"
+    # print(query)
     cursor.execute(query)
-    rows = cursor.fetchall()
-    print(rows)
-
-    cont_list = rows[0][-1].split(",")
+    rows_in_ma = cursor.fetchall()
     
-    query = f"SELECT m.ccn FROM mat m INNER JOIN in_ma im ON m.id = im.ma_id WHERE im.in_id = {ingre_id}"
-    print(query)
-    cursor.execute(query)
-    mat_rows = cursor.fetchall()
-    
-    out_dict = {"data": []}
-    for mat, cont in zip(mat_rows, cont_list):
-        out_dict["data"].append({mat[0]: cont})
+    outList = []
+    for rDict in rows_in_ma:
+        ma_id = rDict['ma_id']
+        subQuery = f"select * from mat where id={ma_id}"
+        cursor.execute(subQuery)
+        ma_info = cursor.fetchone()
+        mat_name = ma_info['ccn']
+        outList.append({'id':ma_id,'mat_name':mat_name,'cont':rDict['cont']})
+    out_dict = {'data':outList}
     
     cursor.close()
     connection.close()
@@ -386,30 +381,20 @@ def get_ingre_one(json_data, db_config):
 
     
 def get_ingre_all(db_config):
-    connection = mysql.connector.connect(**db_config)
-    cursor = connection.cursor(dictionary=True)
-    
-    # 查询所有ingredients的id
-    query = "SELECT * FROM in_ma"
-    cursor.execute(query)
-    rows_in_ma = cursor.fetchall()
-    
-    outList = []
-    for rDict in rows_in_ma:
-        ma_id = rDict['ma_id']
-        subQuery = f"SELECT * FROM mat WHERE id={ma_id}"
-        cursor.execute(subQuery)
-        ma_info = cursor.fetchone()
-        mat_name = ma_info['ccn']
-        outList.append({'id': ma_id, 'mat_name': mat_name, 'cont': rDict['cont']})
+    try:
+        connection = mysql.connector.connect(**db_config)
+        cursor = connection.cursor()
 
-    cursor.close()
-    connection.close()
-    
-    out_dict = {'data': outList}
+        query = "select * from ingre"
+        cursor.execute(query)
+        rows = cursor.fetchall()
 
-    return out_dict
+        cursor.close()
+        connection.close()
 
+        return rows
+    except Exception as e:
+        return f"Error occurred: {str(e)}"
 
 #efed实验燃素数据表
 def add_or_update_efed(json_data, db_config):
