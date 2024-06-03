@@ -116,7 +116,7 @@ def create_table_Efed():
            create_table_query = '''
             CREATE TABLE efed (
                 id int auto_increment not null primary key comment 'ID',
-                in_id int unique comment '相对应的配方id',
+                in_id bigint unique comment '相对应的配方id',
                 count int comment '数目' DEFAULT 0,
                 code varchar(1000) comment '编号' DEFAULT '',
                 pre varchar(1000) comment '压强' DEFAULT '',
