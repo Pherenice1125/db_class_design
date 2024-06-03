@@ -247,25 +247,24 @@ def get_mat_all(db_config):
 #I_M_Midium中间表操作
 def getall_mat_for_ingre(json_data, db_config):
     connection = mysql.connector.connect(**db_config)
-    cursor = connection.cursor()
+    cursor = connection.cursor(dictionary=True)
     
     data = json_data
     ingre_id = data['Ingre_ID']
 
-    query = f"select * from in_ma where in_id={ingre_id}"
-    # print(query)
+    query = f"SELECT * FROM in_ma WHERE in_id={ingre_id}"
     cursor.execute(query)
     rows_in_ma = cursor.fetchall()
     
     outList = []
     for rDict in rows_in_ma:
         ma_id = rDict['ma_id']
-        subQuery = f"select * from mat where id={ma_id}"
+        subQuery = f"SELECT * FROM mat WHERE id={ma_id}"
         cursor.execute(subQuery)
         ma_info = cursor.fetchone()
         mat_name = ma_info['ccn']
-        outList.append({'id':ma_id,'mat_name':mat_name,'cont':rDict['cont']})
-    out_dict = {'data':outList}
+        outList.append({'id': ma_id, 'mat_name': mat_name, 'cont': rDict['cont']})
+    out_dict = {'data': outList}
     
     cursor.close()
     connection.close()
