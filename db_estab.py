@@ -15,12 +15,12 @@ def create_table_Materials():
             create_table_query = '''
                 CREATE TABLE mat (
                     id bigint primary key auto_increment comment 'ID',
-                    ccn varchar(255) unique comment '中文化学名(Chinese chemical name)' DEFAULT '',
+                    ccn varchar(200) unique comment '中文化学名(Chinese chemical name)' DEFAULT '',
                     ecn varchar(255) comment '英文化学名(English chemical name)' DEFAULT '',
                     rmm varchar(255) comment '相对分子质量(relative molecular mass)' DEFAULT '',
                     ofr varchar(255) comment '氧燃比(Oxygen-fuel ratio)' DEFAULT '',
                     ob varchar(255) comment '氧平衡' DEFAULT '',
-                    density double comment '密度',
+                    density varchar(25) comment '密度',
                     granu varchar(255) comment '粒度(granularity)' DEFAULT '',
                     sen_p varchar(255) comment '感度性能(Sensitivity performance)' DEFAULT ''
                 ) comment '原料';
@@ -153,7 +153,7 @@ def create_table_Bre():
                 in_id bigint unique comment '相对应配方id',
                 p varchar(1000) comment 'p' DEFAULT '',
                 A varchar(1000) comment 'A' DEFAULT '',
-                B varchar(1000) comment 'A' DEFAULT '',
+                B varchar(1000) comment 'B' DEFAULT '',
                 N varchar(1000) comment 'N' DEFAULT '',
                 Err varchar(1000) comment 'Err' DEFAULT '',
                 rfs varchar(1000) comment 'references' DEFAULT '',
