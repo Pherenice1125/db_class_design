@@ -45,6 +45,7 @@ def insert_test_data(conf):
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
         """
         cursor.executemany(mat_insert_query, mat_data)
+        print("Successfully insert data into table 'mat'.")
 
         # 插入ingre配方表数据
         ingre_data = [
@@ -72,6 +73,7 @@ def insert_test_data(conf):
         VALUES (%s, %s, %s, %s)
         """
         cursor.executemany(ingre_insert_query, ingre_data)
+        print("Successfully insert data into table 'ingre'.")
 
         # 插入in_ma中间表数据
         in_ma_data = [
@@ -150,6 +152,7 @@ def insert_test_data(conf):
         VALUES (%s, %s, %s, %s, %s)
         """
         cursor.executemany(efed_insert_query, efed_data)
+        print("Successfully insert data into table 'in_ma'.")
         
         bre_data = [
             (2, '0.15|||0.25|||0.35', '1.8e-6|||2.3e-6|||2.8e-6', '1.3e-5|||1.4e-5|||1.5e-5', '1.1|||1.2|||1.3', '4%|||3.8%|||3.5%', 'Ref2345|||Ref3456|||Ref4567', '压力影响下测量|||不同温度影响|||不同湿度影响'),
@@ -167,6 +170,7 @@ def insert_test_data(conf):
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
         """
         cursor.executemany(bre_insert_query, bre_data)
+        print("Successfully insert data into table 'bre'.")
         
         # 提交事务
         connection.commit()
