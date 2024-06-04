@@ -295,6 +295,7 @@ def add_or_update_ingre(json_data, db_config):
     ch_fo_value = data['ch_fo']
     formula_value = data['formula']
     mol_we_value = data['mol_we']
+    name_value = data['name']
     ingre_id_value = data.get('ingre_id')  # 获取ingre_id，如果存在的话
 
     id_values_list = [int(i["id"]) for i in data["data"]]
@@ -302,7 +303,7 @@ def add_or_update_ingre(json_data, db_config):
 
     if ingre_id_value: 
         update_ingre_query = f"""
-        UPDATE ingre SET ch_fo = '{ch_fo_value}', formula = '{formula_value}', mol_we = '{mol_we_value}' 
+        UPDATE ingre SET ch_fo = '{ch_fo_value}', formula = '{formula_value}', mol_we = '{mol_we_value}', name = '{name_value}'
         WHERE id = {ingre_id_value}
         """
         cursor.execute(update_ingre_query)
@@ -317,7 +318,7 @@ def add_or_update_ingre(json_data, db_config):
             cursor.execute(insert_into_in_ma_query)
             connection.commit()
     else:  
-        insert_into_ingre_query = f"INSERT INTO ingre (ch_fo, formula, mol_we) VALUES ('{ch_fo_value}', '{formula_value}', '{mol_we_value}')"
+        insert_into_ingre_query = f"INSERT INTO ingre (ch_fo, formula, mol_we, name) VALUES ('{ch_fo_value}', '{formula_value}', '{mol_we_value}', '{name_value}')"
         cursor.execute(insert_into_ingre_query)
         connection.commit()
 
