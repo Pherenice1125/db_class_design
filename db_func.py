@@ -613,14 +613,15 @@ def get_bre(json_data, db_config):
     connection = mysql.connector.connect(**db_config)
     cursor = connection.cursor()
     
-    in_id = data['Ingre_ID']
+    in_id = int(data['Ingre_ID'])  # 确保ID为整数，如果数据库查询需要
     
-    query = f"select * from bre where in_id = {in_id}"
-    cursor.execute(query)
+    query = "SELECT * FROM bre WHERE in_id = %(in_id)s"
+    params = {"in_id": in_id}  # 使用参数化查询来防止SQL注入
+    cursor.execute(query, params)
     result = cursor.fetchone()
     row = list(result)
     
-    in_id = row[1]  #疑点
+    # 直接从row中读取，不再重新赋值in_id，因为原代码中的该行似乎是多余的
     p_values = row[2].split(sep)
     a_values = row[3].split(sep)
     b_values = row[4].split(sep)
@@ -629,23 +630,22 @@ def get_bre(json_data, db_config):
     rf_values = row[7].split(sep)
     comment_values = row[8].split(sep)
 
-    data = []
+    data_list = []  # 更改变量名以避免与外部传入的"data"重名
     for i in range(len(p_values)):
-        item = [
-            {"P": p_values[i].strip('""')},
-            {"A": a_values[i].strip('""')},
-            {"B": b_values[i].strip('""')},
-            {"N": n_values[i].strip('""')},
-            {"Err": err_values[i].strip('""')},
-            {"rfs": rf_values[i].strip('""')},
-            {"Comment": comment_values[i].strip('""')},
-            ]
-        data += item
+        item = {
+            "P": p_values[i].strip('""'),
+            "A": a_values[i].strip('""'),
+            "B": b_values[i].strip('""'),
+            "N": n_values[i].strip('""'),
+            "Err": err_values[i].strip('""'),
+            "rfs": rf_values[i].strip('""'),
+            "Comment": comment_values[i].strip('""'),
+        }
+        data_list.append(item)  # 使用append方法添加字典到列表中
 
     result = {
-        "data": data
-        }
-    connection.commit()
+        "data": data_list,
+    }
     
     cursor.close()
     connection.close()
