@@ -352,31 +352,23 @@ def update_ingre(json_data, db_config):
     return
 
 def get_ingre_one(json_data, db_config):
-    connection = mysql.connector.connect(**db_config)
-    cursor = connection.cursor(dictionary=True)
     data = json_data
-    ingre_id = data['Ingre_ID']
+    connection = mysql.connector.connect(**db_config)
+    cursor = connection.cursor()
+
+    keys = list(data.keys())
+    if len(keys) == 1:
+        str = keys[0]
+    else:
+        raise ValueError("json_data必须包含且仅包含一个键")
     
-    query = f"select * from in_ma where in_id={ingre_id}"
-    # print(query)
-    cursor.execute(query)
-    rows_in_ma = cursor.fetchall()
-    
-    outList = []
-    for rDict in rows_in_ma:
-        ma_id = rDict['ma_id']
-        subQuery = f"select * from mat where id={ma_id}"
-        cursor.execute(subQuery)
-        ma_info = cursor.fetchone()
-        mat_name = ma_info['ccn']
-        outList.append({'id':ma_id,'mat_name':mat_name,'cont':rDict['cont']})
+    query = f"SELECT * FROM ingre WHERE {str} = %s"
+    cursor.execute(query, (data[str],))
+    rows = cursor.fetchall()
 
     cursor.close()
     connection.close()
-    
-    out_dict = {'data':outList}
-
-    return out_dict
+    return rows
 
     
 def get_ingre_all(db_config):
@@ -488,7 +480,7 @@ def get_efed(json_data, db_config):
             "pre": pre_values[i].strip('""'),
             "rate": rate_values[i].strip('""'),
         }
-        data.append(item)  # 使用append方法添加字典到列表中
+        data.append(item)
 
     result = { 
         "data": data
