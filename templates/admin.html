@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>管理员界面</title>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
-<link rel="stylesheet" href="css/colorpicker.css" />
-<link rel="stylesheet" href="css/datepicker.css" />
-<link rel="stylesheet" href="css/uniform.css" />
-<link rel="stylesheet" href="css/select2.css" />
-<link rel="stylesheet" href="css/matrix-style.css" />
-<link rel="stylesheet" href="css/matrix-media.css" />
-<link rel="stylesheet" href="css/bootstrap-wysihtml5.css" />
-<link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+    <title>管理员界面</title>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet"/>
+    <link href="css/colorpicker.css" rel="stylesheet"/>
+    <link href="css/datepicker.css" rel="stylesheet"/>
+    <link href="css/uniform.css" rel="stylesheet"/>
+    <link href="css/select2.css" rel="stylesheet"/>
+    <link href="css/matrix-style.css" rel="stylesheet"/>
+    <link href="css/matrix-media.css" rel="stylesheet"/>
+    <link href="css/bootstrap-wysihtml5.css" rel="stylesheet"/>
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet"/>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
@@ -24,348 +24,368 @@
 <!--close-Header-part-->
 
 <!--top-Header-menu-->
-<div id="user-nav" class="navbar navbar-inverse">
-  <ul class="nav">
-    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">欢迎</span><b class="caret"></b></a>
-      <ul class="dropdown-menu">
-        <li class="divider"></li>
-        <li><a href="login.html"><i class="icon-key"></i> 退出</a></li>
-      </ul>
-    </li>
-    <li class=""><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">退出</span></a></li>
-  </ul>
+<div class="navbar navbar-inverse" id="user-nav">
+    <ul class="nav">
+        <li class="dropdown" id="profile-messages"><a class="dropdown-toggle" data-target="#profile-messages" data-toggle="dropdown"
+                                                      href="#" title=""><i
+                class="icon icon-user"></i> <span class="text">欢迎</span><b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li class="divider"></li>
+                <li><a href="login.html"><i class="icon-key"></i> 退出</a></li>
+            </ul>
+        </li>
+        <li class=""><a href="login.html" title=""><i class="icon icon-share-alt"></i> <span
+                class="text">退出</span></a></li>
+    </ul>
 </div>
 <!--sidebar-menu-->
 
-<div id="sidebar"> <a href="#" class="visible-phone"><i class="icon icon-list"></i>Forms</a>
- <ul>
-    <li class="submenu active"> <a href="#"><i class="icon icon-th-list"></i> <span>管理员菜单</span> </a>
-    </li>
-  </ul>
+<div id="sidebar"><a class="visible-phone" href="#"><i class="icon icon-list"></i>Forms</a>
+    <ul>
+        <li class="submenu active"><a href="#"><i class="icon icon-th-list"></i> <span>管理员菜单</span> </a>
+        </li>
+    </ul>
 </div>
 
 <!--close-left-menu-stats-sidebar-->
 
 <div id="content">
-<div id="content-header">
-  <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">用户界面</a> <a href="#" class="current">管理员界面</a> </div>
-  <h1>管理员界面</h1>
-</div>
-<div class="container-fluid">
-  <hr>
-  <div class="row-fluid">
-    <div class="span12">
-      <div class="widget-box">
-        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-          <h5>添加用户信息</h5>
-        </div>
-        <div class="widget-content nopadding">
-          <form action="#" method="get" class="form-horizontal">
-            <div class="control-group">
-              <label class="control-label">姓名：</label>
-              <div class="controls">
-                <input id="username-create" type="text" class="span11" placeholder="请输入姓名" />
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">密码：</label>
-              <div class="controls">
-                <input id="password-create" type="password"  class="span11" placeholder="请输入密码"  />
-              </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">是否管理员：</label>
-                <div class="controls">
-                    <input id="is-admin-checkbox-create" type="checkbox" /> 是
+    <div id="content-header">
+        <div id="breadcrumb"><a class="tip-bottom" href="index.html" title="Go to Home"><i class="icon-home"></i>
+            Home</a> <a class="tip-bottom" href="#">用户界面</a> <a class="current" href="#">管理员界面</a></div>
+        <h1>管理员界面</h1>
+    </div>
+    <div class="container-fluid">
+        <hr>
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box">
+                    <div class="widget-title"><span class="icon"> <i class="icon-align-justify"></i> </span>
+                        <h5>添加用户信息</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <form action="#" class="form-horizontal" method="get">
+                            <div class="control-group">
+                                <label class="control-label">姓名：</label>
+                                <div class="controls">
+                                    <input class="span11" id="username-create" placeholder="请输入姓名" type="text"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">密码：</label>
+                                <div class="controls">
+                                    <input class="span11" id="password-create" placeholder="请输入密码"
+                                           type="password"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">是否管理员：</label>
+                                <div class="controls">
+                                    <input id="is-admin-checkbox-create" type="checkbox"/> 是
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">可编辑：</label>
+                                <div class="controls">
+                                    <input id="can-edit-checkbox-create" type="checkbox"/> 是
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">是否激活：</label>
+                                <div class="controls">
+                                    <input id="is-active-checkbox-create" type="checkbox"/> 是
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button class="btn btn-success" id="create-user-btn" type="submit">添加</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">可编辑：</label>
-                <div class="controls">
-                    <input id="can-edit-checkbox-create" type="checkbox" /> 是
+                <div class="widget-box">
+                    <div class="widget-title"><span class="icon"> <i class="icon-align-justify"></i> </span>
+                        <h5>删除用户信息</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <form action="#" class="form-horizontal" method="get">
+                            <div class="control-group">
+                                <label class="control-label">姓名：</label>
+                                <div class="controls">
+                                    <input class="span11" id="deleteusername" placeholder="请输入姓名" type="text"/>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button class="btn btn-success" id="delete-user-btn" type="submit">删除</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">是否激活：</label>
-                <div class="controls">
-                    <input id="is-active-checkbox-create" type="checkbox" /> 是
+                <div class="widget-box">
+                    <div class="widget-title"><span class="icon"> <i class="icon-align-justify"></i> </span>
+                        <h5>修改用户信息</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <form action="#" class="form-horizontal" method="get">
+                            <div class="control-group">
+                                <label class="control-label">ID：</label>
+                                <div class="controls">
+                                    <input class="span11" id="id-edit" placeholder="请输入id" type="text"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">姓名：</label>
+                                <div class="controls">
+                                    <input class="span11" id="username-edit" placeholder="请输入姓名" type="text"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">密码：</label>
+                                <div class="controls">
+                                    <input class="span11" id="password-edit" placeholder="请输入密码" type="password"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">是否管理员：</label>
+                                <div class="controls">
+                                    <input id="is-admin-checkbox-edit" type="checkbox"/> 是
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">可编辑：</label>
+                                <div class="controls">
+                                    <input id="can-edit-checkbox-edit" type="checkbox"/> 是
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">是否激活：</label>
+                                <div class="controls">
+                                    <input id="is-active-checkbox-edit" type="checkbox"/> 是
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button class="btn btn-success" id="edit-user-btn" type="submit">修改</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-            <div class="form-actions">
-              <button type="submit" class="btn btn-success" id="create-user-btn">添加</button>
-            </div>
-          </form>
-        </div>
-      </div>
-        <div class="widget-box">
-        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-          <h5>删除用户信息</h5>
-        </div>
-        <div class="widget-content nopadding">
-          <form action="#" method="get" class="form-horizontal">
-            <div class="control-group">
-              <label class="control-label">姓名：</label>
-              <div class="controls">
-                <input id="deleteusername" type="text" class="span11" placeholder="请输入姓名" />
-              </div>
-            </div>
-            <div class="form-actions">
-              <button type="submit" class="btn btn-success" id="delete-user-btn">删除</button>
-            </div>
-          </form>
-        </div>
-      </div>
-        <div class="widget-box">
-        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-          <h5>修改用户信息</h5>
-        </div>
-        <div class="widget-content nopadding">
-          <form action="#" method="get" class="form-horizontal">
-              <div class="control-group">
-              <label class="control-label">ID：</label>
-              <div class="controls">
-                <input id="id-edit" type="text" class="span11" placeholder="请输入id" />
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">姓名：</label>
-              <div class="controls">
-                <input id="username-edit" type="text" class="span11" placeholder="请输入姓名" />
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">密码：</label>
-              <div class="controls">
-                <input id="password-edit" type="password"  class="span11" placeholder="请输入密码"  />
-              </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">是否管理员：</label>
-                <div class="controls">
-                    <input id="is-admin-checkbox-edit" type="checkbox" /> 是
+                <div class="widget-box">
+                    <div class="widget-title"><span class="icon"> <i class="icon-align-justify"></i> </span>
+                        <h5>用户列表</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <ul id="user-list">
+                            <!-- 用户列表将在此动态生成 -->
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">可编辑：</label>
-                <div class="controls">
-                    <input id="can-edit-checkbox-edit" type="checkbox" /> 是
+
+                <script src="js/jquery.min.js"></script>
+                <script>
+                    const jwtToken = localStorage.getItem('jwtToken');
+                    $(document).ready(function () {
+                            // 当页面加载完成时执行的代码
+                            getUsers(); // 获取用户列表
+                            function getUsers() {
+                                $.ajax({
+                                    url: 'http://127.0.0.1:9010/users/getall', // 请求的 URL
+                                    type: 'GET', // 请求类型
+                                    headers: {
+                                        'Authorization': `Bearer ${jwtToken}`
+                                    },
+                                    success: function (data) {
+                                        // 请求成功时的处理逻辑
+                                        console.log(data);
+                                        renderUserList(data.data); // 在成功获取用户列表后渲染列表
+                                    },
+                                    error: function (xhr, status, error) {
+                                        // 请求失败时的处理逻辑
+                                        console.error('Error:', error);
+                                    }
+                                });
+                            }
+
+                            function renderUserList(users) {
+                                // 渲染用户列表到页面上
+                                var userListElement = $('#user-list');
+                                userListElement.empty(); // 清空列表
+                                if (Array.isArray(users) && users.length > 0) {
+                                    users.forEach(function (userData) {
+                                        // 检查 userData 数组是否存在且长度为 6（与您提供的数据结构相匹配）
+                                        if (Array.isArray(userData) && userData.length === 6) {
+                                            var userId = userData[0];
+                                            var username = userData[1];
+                                            var userPsw = userData[2];
+                                            var isAdmin = userData[3] === 1 ? '是' : '否';
+                                            var canEdit = userData[4] === 1 ? '是' : '否';
+                                            var isActive = userData[5] === 1 ? '是' : '否';
+
+                                            // 创建包含所有用户信息的列表项
+                                            var listItem = $('<li>').text('ID: ' + userId + ', 用户名: ' + username + ', 密码: ' + userPsw + ', 是否管理员: ' + isAdmin + ', 可编辑: ' + canEdit + ', 是否激活: ' + isActive);
+
+                                            userListElement.append(listItem);
+                                        } else {
+                                            console.error('Invalid user data:', userData);
+                                        }
+                                    });
+                                } else {
+                                    console.error('No user data found:', users);
+                                }
+                            }
+
+                            $("#create-user-btn").click(function (event) {
+                                event.preventDefault(); // 阻止表单的默认提交行为
+
+                                var username = $("#username-create").val();
+                                var password = $("#password-create").val();
+                                var isAdmin = $("#is-admin-checkbox-create").is(":checked") ? "change_password" : "";
+                                var canEdit = $("#can-edit-checkbox-create").is(":checked") ? "change_data" : "";
+                                var isActive = $("#is-active-checkbox-create").is(":checked") ? "predict" : "";
+
+                                var permissions = [isAdmin, canEdit, isActive].filter(function (permission) {
+                                    return permission !== ""; // 过滤掉空字符串
+                                });
+
+                                // 发送 Ajax 请求到 Flask 后端
+                                $.ajax({
+                                    url: "http://127.0.0.1:9010/users/create",
+                                    type: "POST",
+                                    contentType: "application/json",
+                                    headers: {
+                                        'Authorization': `Bearer ${jwtToken}`
+                                    },
+                                    data: JSON.stringify({
+                                        username: username,
+                                        password: password,
+                                        permissions: permissions
+                                    }),
+                                    success: function (response, textStatus, xhr) {
+                                        // 检查返回的状态码是否是 200
+                                        if (xhr.status == 200) {
+                                            // 创建成功后的处理逻辑
+                                            console.log(response.Message);
+                                            // 刷新
+                                            location.reload();
+                                        } else {
+                                            // 创建失败时的处理逻辑
+                                            console.error(response.error);
+                                            // 显示错误消息或者执行其他操作
+                                        }
+                                    },
+                                    error: function (xhr, status, error) {
+                                        // 处理创建失败的逻辑
+                                        console.error(xhr.responseText);
+                                        // 显示错误消息或者执行其他操作
+                                    }
+                                });
+                            });
+
+                            $("#delete-user-btn").click(function (event) {
+                                event.preventDefault(); // 阻止表单的默认提交行为
+
+                                var username = $("#deleteusername").val();
+
+                                $.ajax({
+                                    url: "http://127.0.0.1:9010/users/delete",
+                                    type: "POST",
+                                    contentType: "application/json",
+                                    headers: {
+                                        'Authorization': `Bearer ${jwtToken}`
+                                    },
+                                    data: JSON.stringify({username: username}),
+                                    success: function (response, textStatus, xhr) {
+                                        // 检查返回的状态码是否是 200
+                                        if (xhr.status == 200) {
+                                            // 创建成功后的处理逻辑
+                                            console.log(response.Message);
+                                            // 刷新
+                                            location.reload();
+                                        } else {
+                                            // 创建失败时的处理逻辑
+                                            console.error(response.error);
+                                            // 显示错误消息或者执行其他操作
+                                        }
+                                    },
+                                    error: function (xhr, status, error) {
+                                        // 处理创建失败的逻辑
+                                        console.error(xhr.responseText);
+                                        // 显示错误消息或者执行其他操作
+                                    }
+                                });
+                            });
+                            $("#edit-user-btn").click(function (event) {
+                                event.preventDefault(); // 阻止表单的默认提交行为
+
+                                var ID = $("#id-edit").val();
+                                var username = $("#username-edit").val();
+                                var password = $("#password-edit").val();
+                                var isAdmin = $("#is-admin-checkbox-edit").is(":checked") ? 1 : 0;
+                                var canEdit = $("#can-edit-checkbox-edit").is(":checked") ? 1 : 0;
+                                var isActive = $("#is-active-checkbox-edit").is(":checked") ? 1 : 0;
+
+
+                                // 发送 Ajax 请求到 Flask 后端
+                                $.ajax({
+                                    url: "http://127.0.0.1:9010/users/edit",
+                                    type: "POST",
+                                    contentType: "application/json",
+                                    headers: {
+                                        'Authorization': `Bearer ${jwtToken}`
+                                    },
+                                    data: JSON.stringify({
+                                        ID: ID,
+                                        username: username,
+                                        password: password,
+                                        change_password: isAdmin,
+                                        change_data: canEdit,
+                                        predict: isActive
+                                    }),
+                                    success: function (response, textStatus, xhr) {
+                                        // 检查返回的状态码是否是 200
+                                        if (xhr.status == 200) {
+                                            // 创建成功后的处理逻辑
+                                            console.log(response.Message);
+                                            // 刷新
+                                            location.reload();
+                                        } else {
+                                            // 创建失败时的处理逻辑
+                                            console.error(response.error);
+                                            // 显示错误消息或者执行其他操作
+                                        }
+                                    },
+                                    error: function (xhr, status, error) {
+                                        // 处理创建失败的逻辑
+                                        console.error(xhr.responseText);
+                                        // 显示错误消息或者执行其他操作
+                                    }
+                                });
+                            });
+                        },
+                    )
+                </script>
+
+                <!--Footer-part-->
+                <div class="row-fluid">
+                    <div class="span12" id="footer">Copyright &copy; 2018.Company name All rights reserved.<a
+                            href="http://sc.chinaz.com/moban/" target="_blank">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+                    </div>
                 </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">是否激活：</label>
-                <div class="controls">
-                    <input id="is-active-checkbox-edit" type="checkbox" /> 是
-                </div>
-            </div>
-            <div class="form-actions">
-              <button type="submit" class="btn btn-success" id="edit-user-btn">修改</button>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="widget-box">
-        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-          <h5>用户列表</h5>
-        </div>
-        <div class="widget-content nopadding">
-          <ul id="user-list">
-            <!-- 用户列表将在此动态生成 -->
-          </ul>
-        </div>
-      </div>
-
-<script src="js/jquery.min.js"></script>
-<script>
-        const jwtToken = localStorage.getItem('jwtToken');
-        $(document).ready(function() {
-        // 当页面加载完成时执行的代码
-        getUsers(); // 获取用户列表
-    function getUsers() {
-        $.ajax({
-            url: 'http://127.0.0.1:9010/users/getall', // 请求的 URL
-            type: 'GET', // 请求类型
-            headers: {
-                'Authorization': `Bearer ${jwtToken}`
-            },
-            success: function(data) {
-                // 请求成功时的处理逻辑
-                console.log(data);
-                renderUserList(data.data); // 在成功获取用户列表后渲染列表
-            },
-            error: function(xhr, status, error) {
-                // 请求失败时的处理逻辑
-                console.error('Error:', error);
-            }
-        });
-    }
-    function renderUserList(users) {
-        // 渲染用户列表到页面上
-        var userListElement = $('#user-list');
-        userListElement.empty(); // 清空列表
-        if (Array.isArray(users) && users.length > 0) {
-        users.forEach(function(userData) {
-            // 检查 userData 数组是否存在且长度为 6（与您提供的数据结构相匹配）
-            if (Array.isArray(userData) && userData.length === 6) {
-                var userId = userData[0];
-                var username = userData[1];
-                var userPsw = userData[2];
-                var isAdmin = userData[3] === 1 ? '是' : '否';
-                var canEdit = userData[4] === 1 ? '是' : '否';
-                var isActive = userData[5] === 1 ? '是' : '否';
-
-                // 创建包含所有用户信息的列表项
-                var listItem = $('<li>').text('ID: ' + userId + ', 用户名: ' + username + ', 密码: ' + userPsw + ', 是否管理员: ' + isAdmin + ', 可编辑: ' + canEdit + ', 是否激活: ' + isActive);
-
-                userListElement.append(listItem);
-            } else {
-                console.error('Invalid user data:', userData);
-            }
-        });
-    } else {
-        console.error('No user data found:', users);
-    }
-}
-     $("#create-user-btn").click(function(event) {
-        event.preventDefault(); // 阻止表单的默认提交行为
-
-        var username = $("#username-create").val();
-        var password = $("#password-create").val();
-        var isAdmin = $("#is-admin-checkbox-create").is(":checked") ? "change_password" : "";
-        var canEdit = $("#can-edit-checkbox-create").is(":checked") ? "change_data" : "";
-        var isActive = $("#is-active-checkbox-create").is(":checked") ? "predict" : "";
-
-        var permissions = [isAdmin, canEdit, isActive].filter(function(permission) {
-          return permission !== ""; // 过滤掉空字符串
-        });
-
-        // 发送 Ajax 请求到 Flask 后端
-        $.ajax({
-            url: "http://127.0.0.1:9010/users/create",
-            type: "POST",
-            contentType: "application/json",
-            headers: {
-                'Authorization': `Bearer ${jwtToken}`
-            },
-            data: JSON.stringify({username: username, password: password, permissions: permissions}),
-            success: function(response, textStatus, xhr) {
-                // 检查返回的状态码是否是 200
-                if (xhr.status == 200) {
-                    // 创建成功后的处理逻辑
-                    console.log(response.Message);
-                    // 刷新
-                    location.reload();
-                } else {
-                    // 创建失败时的处理逻辑
-                    console.error(response.error);
-                    // 显示错误消息或者执行其他操作
-                }
-            },
-            error: function(xhr, status, error) {
-                // 处理创建失败的逻辑
-                console.error(xhr.responseText);
-                // 显示错误消息或者执行其他操作
-            }
-        });
-    });
-
-    $("#delete-user-btn").click(function(event) {
-        event.preventDefault(); // 阻止表单的默认提交行为
-
-        var username = $("#deleteusername").val();
-
-        $.ajax({
-            url: "http://127.0.0.1:9010/users/delete",
-            type: "POST",
-            contentType: "application/json",
-            headers: {
-                'Authorization': `Bearer ${jwtToken}`
-            },
-            data: JSON.stringify({username: username}),
-            success: function(response, textStatus, xhr) {
-                // 检查返回的状态码是否是 200
-                if (xhr.status == 200) {
-                    // 创建成功后的处理逻辑
-                    console.log(response.Message);
-                    // 刷新
-                    location.reload();
-                } else {
-                    // 创建失败时的处理逻辑
-                    console.error(response.error);
-                    // 显示错误消息或者执行其他操作
-                }
-            },
-            error: function(xhr, status, error) {
-                // 处理创建失败的逻辑
-                console.error(xhr.responseText);
-                // 显示错误消息或者执行其他操作
-            }
-        });
-    });
-    $("#edit-user-btn").click(function(event) {
-        event.preventDefault(); // 阻止表单的默认提交行为
-
-        var ID = $("#id-edit").val();
-        var username = $("#username-edit").val();
-        var password = $("#password-edit").val();
-        var isAdmin = $("#is-admin-checkbox-edit").is(":checked") ? 1 : 0;
-        var canEdit = $("#can-edit-checkbox-edit").is(":checked") ? 1 : 0;
-        var isActive = $("#is-active-checkbox-edit").is(":checked") ? 1 : 0;
-
-
-        // 发送 Ajax 请求到 Flask 后端
-        $.ajax({
-            url: "http://127.0.0.1:9010/users/edit",
-            type: "POST",
-            contentType: "application/json",
-            headers: {
-                'Authorization': `Bearer ${jwtToken}`
-            },
-            data: JSON.stringify({ID: ID,username: username, password: password, change_password: isAdmin, change_data: canEdit, predict: isActive}),
-            success: function(response, textStatus, xhr) {
-                // 检查返回的状态码是否是 200
-                if (xhr.status == 200) {
-                    // 创建成功后的处理逻辑
-                    console.log(response.Message);
-                    // 刷新
-                    location.reload();
-                } else {
-                    // 创建失败时的处理逻辑
-                    console.error(response.error);
-                    // 显示错误消息或者执行其他操作
-                }
-            },
-            error: function(xhr, status, error) {
-                // 处理创建失败的逻辑
-                console.error(xhr.responseText);
-                // 显示错误消息或者执行其他操作
-            }
-        });
-    });
-},
-        )
-</script>
-
-<!--Footer-part-->
-<div class="row-fluid">
-  <div id="footer" class="span12">Copyright &copy; 2018.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></div>
-</div>
-<!--end-Footer-part-->
-<script src="js/jquery.min.js"></script> 
-<script src="js/jquery.ui.custom.js"></script> 
-<script src="js/bootstrap.min.js"></script> 
-<script src="js/bootstrap-colorpicker.js"></script> 
-<script src="js/bootstrap-datepicker.js"></script> 
-<script src="js/jquery.toggle.buttons.html"></script> 
-<script src="js/masked.js"></script> 
-<script src="js/jquery.uniform.js"></script> 
-<script src="js/select2.min.js"></script> 
-<script src="js/matrix.js"></script> 
-<script src="js/matrix.form_common.js"></script> 
-<script src="js/wysihtml5-0.3.0.js"></script> 
-<script src="js/jquery.peity.min.js"></script> 
-<script src="js/bootstrap-wysihtml5.js"></script> 
-<script>
-	$('.textarea_editor').wysihtml5();
-</script>
+                <!--end-Footer-part-->
+                <script src="js/jquery.min.js"></script>
+                <script src="js/jquery.ui.custom.js"></script>
+                <script src="js/bootstrap.min.js"></script>
+                <script src="js/bootstrap-colorpicker.js"></script>
+                <script src="js/bootstrap-datepicker.js"></script>
+                <script src="js/jquery.toggle.buttons.html"></script>
+                <script src="js/masked.js"></script>
+                <script src="js/jquery.uniform.js"></script>
+                <script src="js/select2.min.js"></script>
+                <script src="js/matrix.js"></script>
+                <script src="js/matrix.form_common.js"></script>
+                <script src="js/wysihtml5-0.3.0.js"></script>
+                <script src="js/jquery.peity.min.js"></script>
+                <script src="js/bootstrap-wysihtml5.js"></script>
+                <script>
+                    $('.textarea_editor').wysihtml5();
+                </script>
 </body>
 </html>

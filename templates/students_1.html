@@ -68,21 +68,25 @@
                 <div class="widget-box">
                     <div class="widget-title">
                         <span class="icon"><i class="icon-th"></i></span>
-                        <h5>Data table</h5>
+                        <h5>原料管理</h5>
+                        <div style="position: absolute; right: 0;">
+                            <h5>原料搜索:</h5>
+                            <input id="search-input" placeholder="请输入原料中文名..." type="text">
+                        </div>
                     </div>
                     <div class="widget-content nopadding">
                         <table class="table table-bordered">
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>CCN</th>
-                                <th>ECN</th>
-                                <th>RMM</th>
-                                <th>OB</th>
-                                <th>OFR</th>
-                                <th>Density</th>
-                                <th>Granu</th>
-                                <th>Sen_P</th>
+                                <th>中文化学名</th>
+                                <th>英文化学名</th>
+                                <th>相对分子质量</th>
+                                <th>氧平衡</th>
+                                <th>氧燃比</th>
+                                <th>密度</th>
+                                <th>粒度</th>
+                                <th>感度性能</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
@@ -107,21 +111,21 @@
                             <input id="addCas" name="addCas" required type="text"><br>
                             <label for="addCode">Code:</label><br>
                             <input id="addCode" name="addCode" required type="text"><br>
-                            <label for="addCcn">CCN:</label><br>
+                            <label for="addCcn">中文化学名:</label><br>
                             <input id="addCcn" name="addCcn" required type="text"><br>
-                            <label for="addEcn">ECN:</label><br>
+                            <label for="addEcn">英文化学名:</label><br>
                             <input id="addEcn" name="addEcn" required type="text"><br>
-                            <label for="addRmm">RMM:</label><br>
+                            <label for="addRmm">相对分子质量:</label><br>
                             <input id="addRmm" name="addRmm" required type="text"><br>
-                            <label for="addOb">OB:</label><br>
+                            <label for="addOb">氧平衡:</label><br>
                             <input id="addOb" name="addOb" required type="text"><br>
-                            <label for="addOfr">OFR:</label><br>
+                            <label for="addOfr">氧燃比:</label><br>
                             <input id="addOfr" name="addOfr" required type="text"><br>
-                            <label for="addDensity">Density:</label><br>
-                            <input id="addDensity" name="addDensity" required step="0.01" type="number"><br>
-                            <label for="addGranu">Granu:</label><br>
+                            <label for="addDensity">密度:</label><br>
+                            <input id="addDensity" name="addDensity" required type="text"><br>
+                            <label for="addGranu">粒度:</label><br>
                             <input id="addGranu" name="addGranu" required type="text"><br>
-                            <label for="addSen_p">Sen_P:</label><br>
+                            <label for="addSen_p">感度性能:</label><br>
                             <input id="addSen_p" name="addSen_p" required type="text"><br><br>
                             <input type="submit" value="Submit">
                         </form>
@@ -174,22 +178,22 @@
                         <h2>Update Data</h2>
                         <form id="updateDataForm">
                             <label for="id">ID:</label><br>
-                            <input id="id" name="id" required step="0.01" type="number"><br>
-                            <label for="ccn">CCN:</label><br>
+                            <input id="id" name="id" required step="1" type="number"><br>
+                            <label for="ccn">中文化学名:</label><br>
                             <input id="ccn" name="ccn" required type="text"><br>
-                            <label for="ecn">ECN:</label><br>
+                            <label for="ecn">英文化学名:</label><br>
                             <input id="ecn" name="ecn" required type="text"><br>
-                            <label for="rmm">RMM:</label><br>
+                            <label for="rmm">相对分子质量:</label><br>
                             <input id="rmm" name="rmm" required type="text"><br>
-                            <label for="ob">OB:</label><br>
+                            <label for="ob">氧燃比:</label><br>
                             <input id="ob" name="ob" required type="text"><br>
-                            <label for="ofr">OFR:</label><br>
+                            <label for="ofr">氧平衡:</label><br>
                             <input id="ofr" name="ofr" required type="text"><br>
-                            <label for="density">Density:</label><br>
-                            <input id="density" name="density" required step="0.01" type="number"><br>
-                            <label for="granu">Granu:</label><br>
+                            <label for="density">密度:</label><br>
+                            <input id="density" name="density" required type="text"><br>
+                            <label for="granu">粒度:</label><br>
                             <input id="granu" name="granu" required type="text"><br>
-                            <label for="sen_p">Sen_P:</label><br>
+                            <label for="sen_p">感度性能:</label><br>
                             <input id="sen_p" name="sen_p" required type="text"><br><br>
                             <input type="submit" value="Submit">
                         </form>
@@ -203,7 +207,7 @@
                         z-index: 1;
                         left: 0;
                         top: 0;
-                        width: 100%;
+                        width: 150%;
                         height: 100%;
                         overflow: auto;
                         background-color: rgba(0, 0, 0, 0.5);
@@ -211,11 +215,11 @@
 
                     .modal-content {
                         background-color: #fefefe;
-                        margin: 15% auto;
+                        margin: 0 auto;
                         padding: 20px;
                         border: 1px solid #888;
-                        width: 80%;
-                        max-width: 600px;
+                        width: 100%;
+                        /*max-width: 600px;*/
                         max-height: 80vh;
                         overflow-y: auto;
                     }
@@ -257,14 +261,61 @@
     <script src="js/matrix.tables.js"></script>
     <script>
         $(document).ready(function () {
+            var typingTimer;
+            var doneTypingInterval = 300;  // 延时处理时间，单位为毫秒
             fetchData();
+            $('#search-input').on('input', function () {
+                clearTimeout(typingTimer);
+                var ccn = $(this).val().trim();
+                if (ccn === "") {
+                    fetchData();
+                } else {
+                    typingTimer = setTimeout(function () {
+                        search(ccn);
+                    }, doneTypingInterval);
+                }
+            });
+
+            function search(ccn) {
+                showLoading();
+                $.ajax({
+                    url: 'http://127.0.0.1:9010/mat/getone', // 请求的 URL
+                    type: 'POST', // 请求类型
+                    contentType: "application/json",
+                    data: JSON.stringify({ccn: ccn}),
+                    success: function (data) {
+                        hideLoading();
+                        if (data.value.length === 0) {
+                            console.log('No data found');
+                            $('#data-table-body').html('<tr><td colspan="9">No data found</td></tr>');
+                        } else {
+                            populateTable(data.value);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error:', error);
+                        hideLoading();
+                        $('#data-table-body').html('<tr><td colspan="9">Error occurred while fetching data</td></tr>');
+                    }
+                });
+            }
+
+            function showLoading() {
+                $('#data-table-body').html('<tr><td colspan="9">Loading...</td></tr>');
+            }
+
+            function hideLoading() {
+                $('#data-table-body').html('');
+            }
 
             function fetchData() {
+                showLoading();
                 // 使用AJAX获取数据
                 $.ajax({
                     url: 'http://127.0.0.1:9010/mat/getall', // 请求的 URL
                     type: 'GET', // 请求类型
                     success: function (data) {
+                        hideLoading();
                         // 请求成功时的处理逻辑
                         console.log(data);
                         populateTable(data.value); // 在成功获取用户列表后渲染列表
@@ -314,6 +365,7 @@
                     editButton.addEventListener('click', function () {
                         //将相应行的数据填充到模态对话框中
                         document.getElementById('id').value = item[0];
+                        document.getElementById('id').readOnly = true;
                         document.getElementById('ccn').value = item[1];
                         document.getElementById('ecn').value = item[2];
                         document.getElementById('rmm').value = item[3];
@@ -414,7 +466,7 @@
                     url: "http://127.0.0.1:9010/mat/del",
                     type: "POST",
                     contentType: "application/json",
-                    data: JSON.stringify({id: id}),
+                    data: JSON.stringify({Mat_ID: id}),
                     success: function (response, textStatus, xhr) {
                         // 检查返回的状态码是否是 200
                         if (xhr.status == 200) {

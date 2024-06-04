@@ -81,7 +81,7 @@
                 if (xhr.status == 200) {
                     // 登录成功后的处理逻辑
                     console.log(response.Message);
-                    
+
                     localStorage.clear();
                     localStorage.setItem('jwtToken', response.access_token);
                     if(response.Priviliges.includes('change_password') == 1) {
