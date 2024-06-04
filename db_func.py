@@ -400,28 +400,32 @@ def add_or_update_efed(json_data, db_config):
     count_value = int(data['count'])
            
     query = f"""
-    select pre, rate from efed where in_id = {in_id_value};
+    select code, pre, rate from efed where in_id = {in_id_value};
     """
     cursor.execute(query)
     result = cursor.fetchone()
     
     if result:
-        pre_values_list = result[0].split(sep)
-        rate_values_list = result[1].split(sep)
+        code_values_list = result[0].split(sep)
+        pre_values_list = result[1].split(sep)
+        rate_values_list = result[2].split(sep)
         
         for item in data['data']:
-            pre_values_list.append(item['pre'])
-            rate_values_list.append(item['rate'])
+           code_values_list.append(item['code'])
+           pre_values_list.append(item['pre'])
+           rate_values_list.append(item['rate'])
             
+        code_values_str = sep.join(code_values_list)   
         pre_values_str = sep.join(pre_values_list)
         rate_values_str = sep.join(rate_values_list)
     else:
+        code_values_str = sep.join([item['code'] for item in data['data']])
         pre_values_str = sep.join([item['pre'] for item in data['data']])
         rate_values_str = sep.join([item['rate'] for item in data['data']])
 
     query = f"""
-    insert into efed (in_id, count, pre, rate)
-    values ({in_id_value}, {count_value}, '{pre_values_str}', '{rate_values_str}')
+    insert into efed (in_id, count, code, pre, rate)
+    values ({in_id_value}, {count_value}, '{code_values_str}', '{pre_values_str}', '{rate_values_str}')
     on duplicate key update code=values(code), pre=values(pre), rate=values(rate);
     """
     cursor.execute(query)
@@ -585,7 +589,6 @@ def add_or_update_bre(json_data, db_config):
        
 def del_bre(json_data, db_config):
     data = json_data
-    
     connection = mysql.connector.connect(**db_config)
     cursor = connection.cursor()
     
