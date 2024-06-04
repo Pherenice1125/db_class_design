@@ -457,7 +457,7 @@ def del_efed(json_data, db_config):
     cursor.close()
     connection.close()
     print("efed表：数据删除成功")
-    
+
 def get_efed(json_data, db_config):
     d_data = json_data
     
@@ -466,7 +466,7 @@ def get_efed(json_data, db_config):
     
     in_id = int(d_data['Ingre_ID'])
     
-    query = "select * from efed where in_id = %(in_id)s"
+    query = "SELECT * FROM efed WHERE in_id = %(in_id)s"
     value = {"in_id": in_id}
     cursor.execute(query, value)
     result = cursor.fetchone()
@@ -481,18 +481,18 @@ def get_efed(json_data, db_config):
 
     data = [
         {"count": count},
-        ]
+    ]
     for i in range(len(code_values)):
-        item = [
-            {"code": code_values[i].strip('""')},
-            {"pre": pre_values[i].strip('""')},
-            {"rate": rate_values[i].strip('""')},
-            ]
-        data+=item
+        item = {
+            "code": code_values[i].strip('""'),
+            "pre": pre_values[i].strip('""'),
+            "rate": rate_values[i].strip('""'),
+        }
+        data.append(item)  # 使用append方法添加字典到列表中
 
     result = { 
         "data": data
-        }
+    }
     connection.commit()
     cursor.close()
     connection.close()
