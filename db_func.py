@@ -459,12 +459,12 @@ def del_efed(json_data, db_config):
     print("efed表：数据删除成功")
     
 def get_efed(json_data, db_config):
-    data = json_data
+    d_data = json_data
     
     connection = mysql.connector.connect(**db_config)
     cursor = connection.cursor()
     
-    in_id = int(data['Ingre_ID'])
+    in_id = int(d_data['Ingre_ID'])
     
     query = "select * from efed where in_id = %(in_id)s"
     value = {"in_id": in_id}
@@ -474,17 +474,13 @@ def get_efed(json_data, db_config):
     
     in_id = row[1]
     count = row[2]
-    ref_num = row[3]
-    note = row[4]
-    code_values = row[5].split(sep)
-    pre_values = row[6].split(sep)
-    rate_values = row[7].split(sep)
+    code_values = row[3].split(sep)
+    pre_values = row[4].split(sep)
+    rate_values = row[5].split(sep)
     
 
     data = [
         {"count": count},
-        {"ref_num": ref_num},
-        {"note": note},
         ]
     for i in range(len(code_values)):
         item = [
