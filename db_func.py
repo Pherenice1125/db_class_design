@@ -8,6 +8,14 @@ Created on Mon May 23 17:24:00 2024
 import mysql.connector
 sep = "|||"
 
+#功能性函数
+def convert(input1, input2):
+    ids = [int(num.strip()) for num in input1.split(",")]
+    conts = [f"{num.strip()}" for num in input2.split(",")]
+    result = [{"id": id_val, "cont": cont_val} for id_val, cont_val in zip(ids, conts)]
+
+    return result
+
 # User用户表操作
 def user_add(json_data, db_config):
     data = json_data
@@ -278,6 +286,11 @@ def add_or_update_ingre(json_data, db_config):
     data = json_data
     connection = mysql.connector.connect(**db_config)
     cursor = connection.cursor()
+    
+    str1 = data["mat_ids"]
+    str2 = data["conts"]
+    
+    data["data"] = convert(str1, str2)
 
     ch_fo_value = data['ch_fo']
     formula_value = data['formula']
@@ -290,7 +303,7 @@ def add_or_update_ingre(json_data, db_config):
     if ingre_id_value: 
         update_ingre_query = f"""
         UPDATE ingre SET ch_fo = '{ch_fo_value}', formula = '{formula_value}', mol_we = '{mol_we_value}' 
-        WHERE ingre_id = {ingre_id_value}
+        WHERE id = {ingre_id_value}
         """
         cursor.execute(update_ingre_query)
         connection.commit()
@@ -329,24 +342,6 @@ def del_ingre(json_data, db_config):
     cursor.execute(query, value)
 
     connection.commit()
-    cursor.close()
-    connection.close()
-    return
-     
-def update_ingre(json_data, db_config):
-    connection = mysql.connector.connect(**db_config)
-    cursor = connection.cursor()
-    
-    id = int(json_data['ID'])
-    for k in ['ch_fo','formula','mol_we','name']:
-        if not k in json_data:
-            continue
-        v = json_data[k]
-        query = f"update ingre set {k} = '{v}' where id = {id}"
-        cursor.execute(query)
-        connection.commit()
-    
-
     cursor.close()
     connection.close()
     return
