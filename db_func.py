@@ -613,11 +613,10 @@ def get_bre(json_data, db_config):
     connection = mysql.connector.connect(**db_config)
     cursor = connection.cursor()
     
-    in_id = int(data['Ingre_ID'])
+    in_id = data['Ingre_ID']
     
-    query = "select * from bre where in_id = %(in_id)s"
-    value = {"in_id": in_id}
-    cursor.execute(query, value)
+    query = f"select * from bre where in_id = {in_id}"
+    cursor.execute(query)
     result = cursor.fetchone()
     row = list(result)
     
