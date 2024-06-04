@@ -19,6 +19,11 @@ def insert_test_data(conf):
             db_info = connection.get_server_info()
             print(f"Successfully connected to MySQL Server version {db_info}")
             
+        user_query = """INSERT INTO user (name, pwd, c_d, c_p, predict)
+                      VALUES('admin', 'MYADMIN', 1, 1, 1)"""
+        cursor.execute(user_query)
+        connection.commit()
+        
         mat_data = [
             ('硫酸铜', 'Copper Sulfate', '159.61 g/mol', '1.2:1', '正', '3.6 g/cm³', '300 mesh', '中'),
             ('硝酸钠', 'Sodium Nitrate', '84.99 g/mol', '1.5:1', '正', '2.26 g/cm³', '250 mesh', '高'),
