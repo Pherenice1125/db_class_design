@@ -8,7 +8,7 @@ Created on Mon May 27 17:42:21 2024
 import db_func
 from db_Config import db_config
 from flask_cors import CORS
-from flask import Flask, request, jsonify, make_response, render_template
+from flask import Flask, request, jsonify, make_response
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, JWTManager
 
 
